@@ -6,4 +6,4 @@ class BaseSnake:
         pass
 
     def get_next_move(self, game_state: GameState) -> str:
-        raise NotImplemented
+        raise NotImplementedError('Subclasses should implement this!')
