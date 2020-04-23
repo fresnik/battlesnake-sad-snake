@@ -4,7 +4,7 @@ from snakes.basesnake import BaseSnake
 from snakes.utils import get_next_coord, is_coord_on_board
 
 
-class AvoidWallsAndSelf(BaseSnake):
+class AvoidWallsAndSelfSnake(BaseSnake):
     def get_next_move(self, game_state: GameState) -> str:
         move = super().get_next_move(game_state)
 
