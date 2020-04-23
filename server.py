@@ -35,7 +35,7 @@ class Battlesnake(object):
     def move(self):
         data = cherrypy.request.json
         print('Received move request')
-        print(json.dumps(data.__dict__))
+        print(json.dumps(data))
 
         snake = AvoidWallsSnake()
         game_state = GameState(data)
