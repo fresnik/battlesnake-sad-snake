@@ -1,7 +1,7 @@
 import os
-import random
 
 import cherrypy
+import json
 
 from snakes.avoidwallssnake import AvoidWallsSnake
 from gamestate import GameState
@@ -34,6 +34,8 @@ class Battlesnake(object):
     @cherrypy.tools.json_out()
     def move(self):
         data = cherrypy.request.json
+        print('Received move request')
+        print(json.dumps(data.__dict__))
 
         snake = AvoidWallsSnake()
         game_state = GameState(data)
