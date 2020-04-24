@@ -3,7 +3,7 @@ import os
 import cherrypy
 import json
 
-from snakes.avoidwallsandselfsnake import AvoidWallsAndSelfSnake
+from snakes.claustrophobicsnake import ClaustrophobicSnake
 from gamestate import GameState
 
 """
@@ -37,7 +37,7 @@ class Battlesnake(object):
         print('Received move request')
         print(json.dumps(data))
 
-        snake = AvoidWallsAndSelfSnake()
+        snake = ClaustrophobicSnake()
         game_state = GameState(data)
 
         move = snake.get_next_move(game_state)
