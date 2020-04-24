@@ -42,8 +42,10 @@ class ClaustrophobicSnake(BaseSnake):
             size = game_state.get_size_of_empty_cells(next_head_coord)
             print(f'The area is of size {size} if I go {a_dir}...')
 
-            if size >= largest_area:
+            if size == largest_area:
                 largest_area_directions.append(a_dir)
+            elif size > largest_area:
+                largest_area_directions = [a_dir]
                 largest_area = size
 
         if len(largest_area_directions) == 0:
