@@ -25,17 +25,17 @@ def get_dist(coord1, coord2) -> int:
     return abs(coord2['x'] - coord1['x']) + abs(coord2['y'] - coord1['y'])
 
 
-def get_direction(from_coord, to_coord):
-    vec = (to_coord['x'] - from_coord['x'], to_coord['y'] - from_coord['y'])
-    angle = math.atan2(vec[1], vec[0])
-    if (math.pi / 4) <= angle < (math.pi * 3 / 4):
-        return direction.DOWN
-    elif (math.pi * 3 / 4) <= angle < (math.pi * 5 / 4):
-        return direction.LEFT
-    elif (math.pi * 5 / 4) <= angle < (math.pi * 7 / 4):
-        return direction.UP
-    else:
-        return direction.RIGHT
+def get_directions(from_coord, to_coord):
+    dx = to_coord['x'] - from_coord['x']
+    dy = to_coord['y'] - from_coord['y']
+    sign = lambda x: (1, 0)[x < 0]
+    h_dir = (direction.LEFT, direction.RIGHT)[sign(dx)]
+    v_dir = (direction.UP, direction.DOWN)[sign(dy)]
+
+    if abs(dx) > abs(dy):
+        return h_dir, v_dir
+
+    return v_dir, h_dir
 
 
 def get_opposite_direction(a_dir):

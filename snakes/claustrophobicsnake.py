@@ -1,7 +1,7 @@
 from direction import all_directions, DEFAULT_DIRECTION
 from gamestate import GameState
 from snakes.basesnake import BaseSnake
-from snakes.utils import get_next_coord, get_dist, get_direction, get_opposite_direction
+from snakes.utils import get_next_coord, get_dist, get_opposite_direction, get_directions
 
 import random
 
@@ -24,13 +24,14 @@ class ClaustrophobicSnake(BaseSnake):
 
             d = get_dist(head, snake['body'][0])
             if d <= 4:
-                e_direction = get_direction(head, snake['body'][0])
-                e_direction = get_opposite_direction(e_direction)
-                print(f'snake {snake["name"]} is too close and big, trying opposite direction, to the {e_direction}...')
+                e_directions = get_directions(head, snake['body'][0])
+                for e_direction in e_directions:
+                    o_direction = get_opposite_direction(e_direction)
+                    print(f'snake {snake["name"]} is too close and big, trying opposite direction, to the {o_direction}...')
 
-                next_head_coord = get_next_coord(head, e_direction)
-                if next_head_coord not in game_state.snake_body_cells:
-                    return e_direction
+                    next_head_coord = get_next_coord(head, o_direction)
+                    if next_head_coord not in game_state.snake_body_cells:
+                        return o_direction
 
         # Move in the direction of the largest area
         largest_area = 0
