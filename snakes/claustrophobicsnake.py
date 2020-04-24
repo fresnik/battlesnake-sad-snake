@@ -27,10 +27,12 @@ class ClaustrophobicSnake(BaseSnake):
                 e_directions = get_directions(head, snake['body'][0])
                 for e_direction in e_directions:
                     o_direction = get_opposite_direction(e_direction)
-                    print(f'snake {snake["name"]} is too close and big, trying opposite direction, to the {o_direction}...')
+                    print(f'snake {snake["name"]} is too close and big, '
+                          f'trying opposite direction, to the {o_direction}...')
 
                     next_head_coord = get_next_coord(head, o_direction)
-                    if next_head_coord not in game_state.snake_body_cells:
+                    if next_head_coord not in game_state.snake_body_cells and \
+                            game_state.is_coord_on_board(next_head_coord):
                         return o_direction
 
         # Move in the direction of the largest area
