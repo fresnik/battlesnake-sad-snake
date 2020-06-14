@@ -1,5 +1,4 @@
 import direction
-import math
 
 
 def get_next_coord(curr_coord, a_dir):
